@@ -1,7 +1,8 @@
 from datetime import datetime
 class Household:
-	def __init__(self, name):
+	def __init__(self, name, number):
 		self.name = name
+		self.number = number
 		self.monthly_payments = dict()
 		self.__initializeEmptyYear(datetime.now().year)
 
@@ -14,10 +15,12 @@ class Household:
 		for key,value in self.monthly_payments[year].items():
 			print(key)
 			print(value)
+	
 	def __initializeEmptyYear(self, year):
 		self.monthly_payments[year] = {}
 		for month in range(1,13):
 			self.monthly_payments[year][month] = 0
+
 h = Household('milevi')
 h.makePayment(2017,1,10)
 h.makePayment(2017,3,10)
