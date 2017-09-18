@@ -12,20 +12,32 @@ class Household:
 		self.monthly_payments[year][month] += money
 
 	def printPayments(self, year):
+		print("Payments of household: {}, appnumber: {}".format(self.name, self.number))
 		for key,value in self.monthly_payments[year].items():
 			print(key)
 			print(value)
+		print("---------------------------------------------------------------")
 	
+	def toOutputFormat(self):
+		result = self.name + "-" + str(self.number) + "-"
+		for year in self.monthly_payments:
+			result += (str(year) + ":")
+			for month in self.monthly_payments[year]:
+				result += (str(self.monthly_payments[year][month]) + ",")
+			result = result[:-1]
+			result += "-"	
+		return result[:-1]
+
 	def __initializeEmptyYear(self, year):
 		self.monthly_payments[year] = {}
 		for month in range(1,13):
 			self.monthly_payments[year][month] = 0
 
-h = Household('milevi')
+h = Household('milevi',17)
 h.makePayment(2017,1,10)
 h.makePayment(2017,3,10)
 h.makePayment(2017,5,10)
 h.makePayment(2017,6,10)
 h.makePayment(2016,12,10)
-h.printPayments(2016)
+#h.printPayments(2016)
 
