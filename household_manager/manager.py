@@ -23,17 +23,17 @@ class HouseholdManager:
         self.balance += int(money)
 
     def payTaxes(self, householdNumber, months, money):
-        latestYear = self.households[householdNumber].getLatestYear()
+        lastPayedYear = self.households[householdNumber].getLastPayedYear()
         lastPayedMonth = self.households[householdNumber].getLastPayedMonth()
         for i in range(1, int(months) + 1):
             month = i + lastPayedMonth
             if month > 12:
                 yearOffset = month // 12
                 month %= 12
-                self.payTax(householdNumber, latestYear +
+                self.payTax(householdNumber, lastPayedYear +
                             yearOffset, month, money)
             else:
-                self.payTax(householdNumber, latestYear, month, money)
+                self.payTax(householdNumber, lastPayedYear, month, money)
 
     def getHouseholdsInChooseFormat(self):
         return [h.toString() for h in self.households.values()]
